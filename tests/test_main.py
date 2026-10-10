@@ -24,7 +24,7 @@ def test_1_has_input(ast_tree):
 def test_2_has_int(ast_tree):
     int_calls = sum(1 for node in ast.walk(ast_tree) if is_call_to(node, "int"))
     assert int_calls >= 1, (
-        "Проверьте, что для возраста используется преобразование типа `int()`. "
+        "Проверьте, что для возраста используется преобразование типа `int()`."
         "Не найдено использование функции `int()`."
     )
 

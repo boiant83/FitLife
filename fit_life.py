@@ -1,26 +1,59 @@
-# Проект FitLife - MVP версия 1.0
+"""Проект FitLife - MVP версия 1.0."""
 
+# 1. Знакомство с пользователем
 
-# 1. Знакомство
-# TODO: Спроси у пользователя имя и сохрани в переменную user_name
-# TODO: Спроси возраст и сохрани в переменную user_age (не забудь преобразовать в число)
+# Имя пользователя
+user_name = input('Ваше имя: ')
+# Возраст пользователя
+while True:
+    user_age_int = input('Сколько вам лет: ')
+    try:
+        user_age = int(user_age_int)
+        break
+    except ValueError:
+        print('\nЭто не число. Попробуйте снова - пример: 43')
+        print("-" * 45)
 
+# 2. Сбор данных для расчетов
 
-# 2. Сбор данных
-# TODO: Запроси вес (в кг) и сохрани в user_weight (тип float)
-# TODO: Запроси рост (в метрах, например 1.75) и сохрани в user_height (тип float)
+# Вес пользователя
+while True:
+    user_weight_str = input('Ваш вес в кг: ')
+    user_weight_str = user_weight_str.replace(',', '.')
+    try:
+        user_weight = float(user_weight_str)
+        break
+    except ValueError:
+        print('\nЭто не число. Попробуйте снова - пример: 72.5')
+        print("-" * 45)
+# Рост пользователя
+while True:
+    user_height_str = input('Ваш рост в метрах: ')
+    user_height_str = user_height_str.replace(',', '.')
+    try:
+        user_height = float(user_height_str)
+        break
+    except ValueError:
+        print('\nЭто не число. Попробуйте снова - пример: 1.72')
+        print("-" * 45)
 
+# 3. Рассчеты для вывода
 
-# 3. Логика расчетов (Функции как "черный ящик": используем арифметику)
-# Формула ИМТ: вес разделить на (рост в квадрате)
-# TODO: Рассчитай bmi (Индекс массы тела)
+# Рассчет ИМТ (Индекс массы тела)
+user_bmi = user_weight / user_height ** 2
+user_bmi = round(user_bmi, 1)
 
+# Рассчет кол-ва воды на массу тела
+WATER_PER_KG = 30
+ML_PER_LITER = 1000
+water_ml = user_weight * WATER_PER_KG
+water_l = water_ml / ML_PER_LITER
+water_l = round(water_l, 2)
 
-# Подсчет воды: вес * 30 мл
-# TODO: Рассчитай water_needed
-
-
-# 4. Вывод красивого результата
-# TODO: Используй f-строку, чтобы вывести приветствие, например: "Привет, Иван!"
-# TODO: Выведи возраст, ИМТ (округленный до 1 знака) и норму воды.
-print("Расчет окончен. Будьте здоровы!")
+# Вывод результата расчетов
+print('=' * 45)
+print(f'\nОтчет для пользователя: {user_name} ({user_age} лет)')
+print('Твой Индекс Массы Тела: ', user_bmi)
+print(f'Норма воды: {water_l} л. воды в день\n')
+print('Расчет закончен. Будь здоровым, и красивым!\n')
+print('=' * 45)
