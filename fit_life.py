@@ -3,55 +3,62 @@
 # 1. Знакомство с пользователем
 
 # Имя пользователя
-user_name = input('Ваше имя: ')
+while True:
+    user_name = input('Ваше имя: ').strip()
+    if user_name == '':
+        print('\nИмя не может быть пустым. Попробуйте снова.')
+        print('-' * 45)
+        continue
+    break
 
 # Возраст пользователя
 while True:
     user_age_int = input('Сколько вам лет: ')
     try:
         user_age = int(user_age_int)
-        if user_age <= 0:
-            print('\nВозраст должен быть положительным числом.')
-            print('-' * 45)
-            continue
-        break
     except ValueError:
-        print('\nЭто не число. Попробуйте снова | пример: 43')
+        print('\nЭто не число. Попробуйте снова (пример: 43)')
         print('-' * 45)
+        continue
+    if user_age < 1 or user_age > 120:
+        print('\nВозраст должен быть от 1 до 120 лет. Попробуйте снова.')
+        print('-' * 45)
+        continue
+    break
 
 # 2. Сбор данных для расчётов
 
 # Вес пользователя
 while True:
-    user_weight_str = input('Ваш вес в кг: ')
-    user_weight_str = user_weight_str.replace(',', '.')
+    user_weight_str = input('Ваш вес в кг: ').replace(',', '.')
     try:
         user_weight = float(user_weight_str)
-        if user_weight <= 0:
-            print('\nВес должен быть положительным числом.')
-            print('-' * 45)
-            continue
-        break
     except ValueError:
-        print('\nЭто не число. Попробуйте снова | пример: 72.5')
+        print('\nЭто не число. Попробуйте снова (пример: 72.5)')
         print('-' * 45)
+        continue
+    if user_weight < 1 or user_weight > 500:
+        print('\nВес должен быть от 1 до 500 кг. Попробуйте снова.')
+        print('-' * 45)
+        continue
+    break
 
 # Рост пользователя
 while True:
-    user_height_str = input('Ваш рост в метрах: ')
-    user_height_str = user_height_str.replace(',', '.')
+    user_height_str = input('Ваш рост в метрах: ').replace(',', '.')
     try:
         user_height = float(user_height_str)
-        if user_height <= 0:
-            print('\nРост должен быть положительным числом.')
-            print('-' * 45)
-            continue
-        break
     except ValueError:
-        print('\nЭто не число. Попробуйте снова | пример: 1.72')
+        print('\nЭто не число. Попробуйте снова (пример: 1.72)')
         print('-' * 45)
+        continue
+    if user_height < 0.5 or user_height > 2.5:
+        print('\nРост должен быть от 0.5 до 2.5 м. Попробуйте снова.')
+        print('-' * 45)
+        continue
+    break
 
-# 3. Расчёт для вывода
+# 3. Расчёты для вывода
 
 # Расчёт воды
 WATER_PER_KG = 30
@@ -93,8 +100,7 @@ elif last_one in (2, 3, 4):
 else:
     age_word = 'лет'
 
-# 4. Вывод расчёта
-
+# Вывод
 print('=' * 45)
 print(f'Отчет для пользователя: {user_name} ({user_age} {age_word})')
 print(f'Индекс массы тела: {user_bmi} — {bmi_category}.')
